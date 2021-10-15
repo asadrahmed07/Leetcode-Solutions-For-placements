@@ -1,0 +1,40 @@
+/* Number of Elements smaller than the Current Element Function returns an Array 
+    for Example : we input n  = 5 
+                    Then nums = [ 8, 1, 2, 2, 3];
+    Then Output :
+                [4 , 0, 1 , 1, 3]
+*/
+import java.util.Scanner;
+
+public class NoOfElementsSmallerThanCurrent {
+    public static int[] SmallerThanCurrent(int[] nums) {
+        int[] ans = new int[102];
+        for (int i = 0; i < nums.length; i++) {
+            ans[nums[i]]++;
+        }
+        for (int i = 0; i < 101; i++) {
+            ans[i + 1] += ans[i];
+        }
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = ans[nums[i] - 1];
+        }
+
+        return nums;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+        SmallerThanCurrent(nums);
+        for (int i : nums) {
+            System.out.print(i + " ,");
+        }
+        System.out.println();
+        sc.close();
+
+    }
+}
