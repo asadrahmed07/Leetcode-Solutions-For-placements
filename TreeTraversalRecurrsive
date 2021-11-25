@@ -1,0 +1,80 @@
+// Recurrsive way 
+
+import java.util.Scanner;
+
+public class BinaryTree {
+
+  static Scanner sc = null;
+
+  static Node createNode() {
+    Node root = null;
+
+    System.out.println("Enter the data: ");
+    int data = sc.nextInt();
+
+    if (data == -1)
+      return null;
+    root = new Node(data);
+
+    System.out.println("Enter left for " + data);
+    root.left = createNode();
+
+    System.out.println("Enter right for " + data);
+    root.right = createNode();
+
+    return root;
+
+  }
+
+  public static void inOrder(Node root) {
+    if (root == null) {
+      return;
+    }
+    inOrder(root.left);
+    System.out.print(root.data);
+    inOrder(root.right);
+
+  }
+
+  public static void PreOrder(Node root) {
+    if (root == null) {
+      return;
+    }
+    System.out.print(root.data);
+    PreOrder(root.left);
+    PreOrder(root.right);
+
+  }
+
+  public static void PostOrder(Node root) {
+    if (root == null)
+      return;
+
+    PostOrder(root.left);
+    PostOrder(root.right);
+    System.out.print(root.data);
+
+  }
+
+  public static void main(String[] args) {
+    sc = new Scanner(System.in);
+    Node root = createNode();
+    inOrder(root);
+    System.out.println();
+    PreOrder(root);
+    System.out.println();
+    PostOrder(root);
+    System.out.println();
+  }
+
+}
+
+class Node {
+  int data;
+  Node left;
+  Node right;
+
+  public Node(int data) {
+    this.data = data;
+  }
+}
