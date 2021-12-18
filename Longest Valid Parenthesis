@@ -1,0 +1,33 @@
+// leetcode problem no. 32(hard) 
+class Solution {
+    public int longestValidParentheses(String s) {
+        int ans = 0;
+        
+        Stack<Character> stackChar = new Stack<>();
+        Stack<Integer> stackIndex = new Stack<>();
+        int index = 0;
+        stackIndex.push(-1);
+        for(char c : s.toCharArray()) {
+            
+            if( c == '(') {
+                stackChar.push(c);
+                stackIndex.push(index);
+            }
+            else {
+                if(!stackChar.isEmpty()) {
+                 stackChar.pop();
+                 stackIndex.pop();
+                    
+                ans = Math.max(ans , index-stackIndex.peek());
+                }
+                else {
+                    stackIndex.push(index);
+                }
+            }
+            
+            index++;
+        }
+        
+        return ans;
+    }
+}
