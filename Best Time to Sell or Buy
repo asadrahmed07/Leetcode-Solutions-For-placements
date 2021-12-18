@@ -1,0 +1,16 @@
+// Leetcode problem no. 121
+class Solution {
+    public int maxProfit(int[] prices) {
+        int priceSoFar = Integer.MAX_VALUE;
+        int profit = 0;
+        for(int i : prices) {
+            if(i < priceSoFar) {
+                priceSoFar = Math.min(priceSoFar, i);
+            }
+            else {
+                profit = Math.max(profit , i-priceSoFar);
+            }
+        }
+        return profit;
+    }
+}
