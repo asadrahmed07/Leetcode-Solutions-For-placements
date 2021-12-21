@@ -1,0 +1,31 @@
+//leetcode problem no. 735
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> s = new Stack<>();
+        int i = 0;
+        while(i < asteroids.length) {
+            if(asteroids[i] > 0) {
+                s.push(asteroids[i]);
+            }
+            else {
+            while(!s.isEmpty() && s.peek() > 0 && s.peek() < Math.abs(asteroids[i])) {
+                s.pop();
+            }
+            if(s.isEmpty() || s.peek() < 0) {
+                s.push(asteroids[i]);
+            }
+            else if(!s.isEmpty() && s.peek() == Math.abs(asteroids[i])) {
+                s.pop();
+            }
+        }
+         i++;
+    }
+        
+        int[] ans = new int[s.size()];
+        for(int j = s.size()-1; j >= 0; j--) {
+            ans[j] = s.pop();
+        }
+        
+        return ans;
+    }
+}
