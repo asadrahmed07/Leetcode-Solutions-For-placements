@@ -1,0 +1,25 @@
+//Leetcode problem no. 2109
+class Solution {
+    public String addSpaces(String s, int[] spaces) {
+        StringBuilder sb = new StringBuilder();
+        int j = 0;
+        int n = spaces.length;
+        for(int i : spaces) {
+            
+           while(j < s.length()) {
+                 if(i == j) {
+                     sb.append(" ");
+                     break;
+                 }
+                sb.append(s.charAt(j));
+               j++;
+            }
+        }
+        
+        for(int i = spaces[n-1]; i < s.length(); i++) {
+            sb.append(s.charAt(i));
+        }
+        
+        return sb.toString();
+    }
+}
