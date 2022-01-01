@@ -1,0 +1,23 @@
+//Leetcode problem no. 1389
+class Solution {
+    public int[] createTargetArray(int[] nums, int[] index) {
+         int[] ans = new int[nums.length];
+         for(int i = 0 ; i < nums.length; i++) {
+             ans[i] = -1;
+         }
+        
+         for(int i = 0; i < nums.length; i++) {
+             if(ans[index[i]] == -1) {
+                 ans[index[i]] = nums[i];
+             }
+             else {
+                 for(int j = nums.length-2; j >=index[i] ; j--) {
+                     ans[j+1] = ans[j];
+                 }
+                 ans[index[i]] = nums[i];
+             }
+         }
+        
+        return ans;
+    }
+}
